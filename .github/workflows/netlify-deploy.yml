@@ -1,0 +1,103 @@
+name: Deploy Frontends to Netlify
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'cognevance_personal-portfolio/frontend/**'
+      - 'cognevance_task-management-system/frontend/**'
+      - 'cognevance_ecommerce-platform/frontend/**'
+      - '.github/workflows/netlify-deploy.yml'
+
+jobs:
+  deploy-portfolio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+          cache-dependency-path: cognevance_personal-portfolio/frontend/package-lock.json
+      - name: Build Portfolio
+        working-directory: cognevance_personal-portfolio/frontend
+        env:
+          VITE_API_URL: ${{ secrets.PORTFOLIO_VITE_API_URL }}
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './cognevance_personal-portfolio/frontend/dist'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy portfolio frontend'
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_PORTFOLIO_SITE_ID }}
+
+  deploy-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+          cache-dependency-path: cognevance_task-management-system/frontend/package-lock.json
+      - name: Build Task Management
+        working-directory: cognevance_task-management-system/frontend
+        env:
+          VITE_API_URL: ${{ secrets.TASKS_VITE_API_URL }}
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './cognevance_task-management-system/frontend/dist'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy task management frontend'
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_TASKS_SITE_ID }}
+
+  deploy-ecommerce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+          cache-dependency-path: cognevance_ecommerce-platform/frontend/package-lock.json
+      - name: Build E-Commerce
+        working-directory: cognevance_ecommerce-platform/frontend
+        env:
+          VITE_API_URL: ${{ secrets.ECOMMERCE_VITE_API_URL }}
+          VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './cognevance_ecommerce-platform/frontend/dist'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy e-commerce frontend'
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_ECOMMERCE_SITE_ID }}

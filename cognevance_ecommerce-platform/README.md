@@ -56,6 +56,10 @@ Runs on `http://localhost:5175`
 - [Project Report](docs/PROJECT_REPORT.md)
 - [Screenshots Guide](docs/screenshots/README.md)
 
+## Live Demo
+
+**Frontend:** https://cognevance-ecommerce-jamshaid.netlify.app
+
 ## Deployment
 
 - Frontend: Vercel / Netlify

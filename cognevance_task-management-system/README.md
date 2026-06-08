@@ -58,6 +58,10 @@ Runs on `http://localhost:5174`
 - [Project Report](docs/PROJECT_REPORT.md)
 - [Screenshots Guide](docs/screenshots/README.md)
 
+## Live Demo
+
+**Frontend:** https://cognevance-tasks-jamshaid.netlify.app
+
 ## Deployment
 
 - Frontend: Vercel / Netlify

@@ -86,6 +86,10 @@ App runs at `http://localhost:5173`
 - [Project Report](docs/PROJECT_REPORT.md)
 - [Screenshots Guide](docs/screenshots/README.md)
 
+## Live Demo
+
+**Frontend:** https://cognevance-portfolio-jamshaid.netlify.app
+
 ## Deployment
 
 - **Frontend:** Deploy to Vercel or Netlify

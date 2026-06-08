@@ -47,6 +47,16 @@ npm run seed
 # Admin: admin@cognevance.com / admin123
 ```
 
+## Live Demo (Netlify)
+
+| Project | Live URL |
+|---------|----------|
+| Personal Portfolio | https://cognevance-portfolio-jamshaid.netlify.app |
+| Task Management | https://cognevance-tasks-jamshaid.netlify.app |
+| E-Commerce Platform | https://cognevance-ecommerce-jamshaid.netlify.app |
+
+> **Note:** Frontends are live on Netlify. Deploy backends on [Render](https://render.com) using `render.yaml` and set `VITE_API_URL` in Netlify env vars for full API functionality. See [NETLIFY_DEPLOYMENT.md](NETLIFY_DEPLOYMENT.md).
+
 ## Submission Checklist
 
 - [ ] Separate GitHub repo for each project (`cognevance_projectName`)

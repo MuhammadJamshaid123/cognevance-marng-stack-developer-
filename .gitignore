@@ -1,10 +1,11 @@
-node_modules/
 .env
 dist/
+node_modules/
 *.log
 .DS_Store
 Thumbs.db
 
-# E-commerce uploads (keep folder, ignore uploaded files)
+# Root dev tools (netlify-cli) — keep package.json, ignore install
+/node_modules/
 cognevance_ecommerce-platform/backend/uploads/*
 !cognevance_ecommerce-platform/backend/uploads/.gitkeep
